@@ -10,6 +10,7 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by LaunchCode
@@ -44,6 +45,33 @@ public class JobData {
         }
 
         return values;
+    }
+
+    /**
+     * Fetch list of all values from loaded data,
+     * without duplicates, for a given column.
+     *
+     * @param searchTerm The column to retrieve values from
+     * @return List of all of the values of the given field
+     */
+    public static ArrayList<HashMap<String, String>> findByValue(String searchTerm) {
+
+        // load data, if not already loaded
+        loadData();
+
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        for (int i = 0; i < allJobs.size(); i++) {
+            for (Map.Entry<String, String> entry : allJobs.get(i).entrySet()) {
+                String value = entry.getValue();
+                if (value.matches(".*(?i)"+searchTerm+".*")) {
+                    jobs.add(allJobs.get(i));
+                    break;
+                }
+            }
+        }
+
+        return jobs;
     }
 
     public static ArrayList<HashMap<String, String>> findAll() {

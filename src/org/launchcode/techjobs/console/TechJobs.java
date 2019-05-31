@@ -59,7 +59,7 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    System.out.println("Search all fields not yet implemented.");
+                    printJobs(JobData.findByValue(searchTerm));
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
@@ -108,13 +108,15 @@ public class TechJobs {
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-/*        *****
+        /*
+        ******
         position type: Data Scientist / Business Intelligence
         name: Sr. IT Analyst (Data/BI)
         employer: Bull Moose Industries
         location: Saint Louis
         core competency: Statistical Analysis
-        ******/
+        ******
+        */
 
         if ( someJobs.size() > 0 ) {
             for (int i = 0; i < someJobs.size(); i++) {
@@ -125,7 +127,6 @@ public class TechJobs {
                     System.out.println(key + ": " + value);
                 }
                 System.out.println("******");
-                System.out.println("");
             }
         } else {
             System.out.println("No results found.");
