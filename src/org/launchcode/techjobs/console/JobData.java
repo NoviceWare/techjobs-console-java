@@ -104,8 +104,11 @@ public class JobData {
 
             String aValue = row.get(column);
 
-            if (aValue.contains(value)) {
+            /** if (aValue.contains(value)) { */
+            if (aValue.matches(".*(?i)"+value+".*")) {
                 jobs.add(row);
+            } else {
+                System.out.println("No results found.");
             }
         }
 
